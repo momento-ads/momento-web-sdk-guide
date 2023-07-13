@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Momento SDK</title>
+    <script src="https://web-sdk.momento.dev/prod/momento-latest.min.js"></script>
+    <script>
+        window.momentoAdSdk.showAd({
+            format: 'native',
+            appId: 'appId',
+            unitId: 'unitId',
+            settings: {
+                slot: 'momento-ad-native',
+                nativeCallback: function ({ imageUrl, title, description, cta, logoUrl, clickUrl, adChoiceImageUrl, adChoiceClickUrl }) {
+                    let nativeSlot = document.getElementById('momento-ad-native');
+
+                    let anchorElement = document.createElement('a');
+                    anchorElement.href = clickUrl;
+                    anchorElement.target = '_blank';
+
+                    let imgElement = document.createElement('img');
+                    imgElement.src = imageUrl;
+
+                    let titleElement = document.createElement('p');
+                    titleElement.innerText = title;
+
+                    let descriptionElement = document.createElement('div');
+                    descriptionElement.innerText = description;
+
+                    let logoElement = document.createElement('img');
+                    logoElement.src = logoUrl;
+
+                    let ctaElement = document.createElement('button');
+                    ctaElement.innerText = cta;
+
+                    let adChoiceClickElement = document.createElement('a');
+                    adChoiceClickElement.target = '_blank';
+                    adChoiceClickElement.href = adChoiceClickUrl;
+
+                    let adChoiceImgElement = document.createElement('img');
+                    adChoiceImgElement.src = adChoiceImageUrl;
+
+                    adChoiceClickElement.appendChild(adChoiceImgElement)
+
+                    anchorElement.appendChild(imgElement);
+                    anchorElement.appendChild(titleElement);
+                    anchorElement.appendChild(descriptionElement);
+                    anchorElement.appendChild(ctaElement);
+                    anchorElement.appendChild(logoElement);
+
+                    nativeSlot.appendChild(anchorElement);
+                    nativeSlot.appendChild(adChoiceClickElement);
+                },
+                onLoaded: (unitId) => console.log('onLoaded', unitId),
+                onFailed: (error) => console.log('onFailed', error)
+            }
+        });
+    </script>
+</head>
+<body>
+    <div id="momento-ad-native"></div>
+</body>
+</html>

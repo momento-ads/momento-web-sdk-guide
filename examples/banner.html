@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Momento SDK</title>
+    <script src="https://web-sdk.momento.dev/prod/momento-latest.min.js"></script>
+    <script>
+        window.momentoAdSdk.showAd({
+            format: 'banner',
+            appId: 'appId',
+            unitId: 'unitId',
+            settings: {
+                slot: 'momento-ad-banner',
+                backfills: ['<div>backfill</div>'],
+                onLoaded: (unitId) => console.log('onLoaded', unitId),
+                onFailed: (error) => console.log('onFailed', error)
+            }
+        });
+    </script>
+</head>
+<body>
+    <iframe id="momento-ad-banner"></iframe>
+</body>
+</html>
