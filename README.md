@@ -119,7 +119,7 @@
     unitId: '9876543210',
     settings: {
       slot: 'momento-ad-banner',
-  	backfills: ['<div>광고 준비중</div>', '<img src="backfill.jpeg" />']
+      backfills: ['<div>광고 준비중</div>', '<img src="backfill.jpeg" />']
       onLoaded: (unitId) => console.log(unitId),
       onFailed: (error) => console.log(error),
     },
@@ -173,16 +173,16 @@
 - `nativeCallback` 콜백 함수 인자로 직접 네이티브 광고 레이아웃을 구성할 수 있습니다.
 - (필수) [AdChoices](https://en.wikipedia.org/wiki/AdChoices) 아이콘이 노출되도록 구성 해야합니다. 다른요소에 가려지지 않도록 광고 우측 상단 배치를 권장합니다.
 
-| **asset**     | **required** | **type**                       | **example**                |
+| **asset**     | **type** | **description**                       | **example**                |
 | ------------- | :----------: | ------------------------------ | -------------------------- |
-| imageUrl      |    string    | 광고 메인이미지 url            | `https://imageUrl...       |
-| title         |    string    | 광고 제목                      | ‘광고 제목입니다.’         |
-| clickUrl      |    string    | 광고 click시 이동 url          | `https://clickUrl...       |
-| description   |    string    | 광고 상세 설명                 | ‘광고 설명입니다.’         |
-| cta           |    string    | 광고 액션 유도 문구            | ‘바로가기’                 |
-| logoUrl       |    string    | 광고주 로고                    | `https://logoUrl…          |
-| adchoiceImage |    string    | 광고 Privacy policy 아이콘 url | `https://adchoiceImageUrl… |
-| adchoiceClick |    string    | 광고 Privacy policy 클릭 url   | `https://adchoiceClickUrl… |
+| imageUrl      |    string    | 광고 메인이미지 url            | imageUrl...      |
+| title         |    string    | 광고 제목                      | 광고 제목입니다.         |
+| clickUrl      |    string    | 광고 click시 이동 url          | clickUrl...       |
+| description   |    string    | 광고 상세 설명                 | 광고 설명입니다.         |
+| cta           |    string    | 광고 액션 유도 문구            | 바로가기                 |
+| logoUrl       |    string    | 광고주 로고                    | logoUrl...         |
+| adChoiceImageUrl |    string    | 광고 Privacy policy 아이콘 url | adChoiceImage... |
+| adChoiceClickUrl |    string    | 광고 Privacy policy 클릭 url   |adChoiceClick... |
 
 ```html
 <script src="https://web-sdk.momento.dev/prod/momento-latest.min.js"></script>
@@ -194,43 +194,43 @@
      settings: {
        slot: 'momento-ad-native',
        nativeCallback: function({imageUrl, title, description, cta, logoUrl, clickUrl, adChoiceImageUrl, adChoiceClickUrl}){
-  		let nativeSlot = document.getElementById('momento-native');
+          let nativeSlot = document.getElementById('momento-native');
 
-           let anchorElement = document.createElement('a');
-           anchorElement.href = clickUrl;
+          let anchorElement = document.createElement('a');
+          anchorElement.href = clickUrl;
 
-           let imgElement = document.createElement('img');
-           imgElement.src = imageUrl;
+          let imgElement = document.createElement('img');
+          imgElement.src = imageUrl;
 
-           let titleElement = document.createElement('p');
-           titleElement.innerText = title;
+          let titleElement = document.createElement('p');
+          titleElement.innerText = title;
 
-           let descriptionElement = document.createElement('div');
-           descriptionElement.innerText = description;
+          let descriptionElement = document.createElement('div');
+          descriptionElement.innerText = description;
 
-           let logoElement = document.createElement('img');
-           logoElement.src = logoUrl;
+          let logoElement = document.createElement('img');
+          logoElement.src = logoUrl;
 
-           let ctaElement = document.createElement('button');
-           ctaElement.innerText = cta;
+          let ctaElement = document.createElement('button');
+          ctaElement.innerText = cta;
 
-           let adChoiceClickElement = document.createElement('a');
-           adChoiceClickElement.href = adChoiceClickUrl;
+          let adChoiceClickElement = document.createElement('a');
+          adChoiceClickElement.href = adChoiceClickUrl;
 
-           let adChoiceImgElement = document.createElement('img');
-           adChoiceImgElement.src = adChoiceImageUrl;
+          let adChoiceImgElement = document.createElement('img');
+          adChoiceImgElement.src = adChoiceImageUrl;
 
-           adChoiceClickElement.appendChild(adChoiceImgElement)
+          adChoiceClickElement.appendChild(adChoiceImgElement)
 
-           anchorElement.appendChild(imgElement);
-           anchorElement.appendChild(titleElement);
-           anchorElement.appendChild(descriptionElement);
-           anchorElement.appendChild(ctaElement);
-           anchorElement.appendChild(logoElement);
+          anchorElement.appendChild(imgElement);
+          anchorElement.appendChild(titleElement);
+          anchorElement.appendChild(descriptionElement);
+          anchorElement.appendChild(ctaElement);
+          anchorElement.appendChild(logoElement);
 
-           nativeSlot.appendChild(anchorElement);
-           nativeSlot.appendChild(adChoiceClickElement);
-  }
+          nativeSlot.appendChild(anchorElement);
+          nativeSlot.appendChild(adChoiceClickElement);
+        }
        onLoaded: (unitId) => console.log(unitId),
        onFailed: (error) => console.log(error),
      },
