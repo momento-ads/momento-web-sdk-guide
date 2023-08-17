@@ -1,4 +1,5 @@
-# Momento Web SDK 
+# Momento Web SDK
+
 ## 기본 설정 가이드
 
 ### 1. 사전 안내
@@ -18,7 +19,6 @@
     <script>
       window.momentoAdSdk.showAd({
         format: 'banner',
-        appId: 'app-id', //매체를 등록할 때 받은 appId
         unitId: 'unit-id', //매체를 등록할 때 받은 unitId
         settings: {
           slot: 'momento-ad-slot', //광고를 보여줄 태그의 id값
@@ -34,7 +34,6 @@
 |               | **required** | **type** | **description**                | **example**                      |
 | ------------- | :----------: | :------: | ------------------------------ | -------------------------------- |
 | format        |     true     |  string  | 광고의 기본 포맷               | banner/native/video              |
-| appId         |     true     |  string  | 매체를 등록할 때 받은 appId    |                                  |
 | unitId        |     true     |  string  | 매체를 등록할 때 받은 unitId   |                                  |
 | settings      |     true     |  object  | 포맷에 따라 설정이 달라집니다. | { slot: 'momento-ad-slot', ... } |
 | settings.slot |     true     |  string  | 광고를 보여줄 태그의 id 값     | momento-ad-slot                  |
@@ -49,12 +48,11 @@
      - `onLoaded`, `onFailed`, `nativeCallback` 등 (하단 포맷별 상세 설정 가이드 참고)
 
 ```html
-<iframe id="momento-ad-slot"></iframe>
+<div id="momento-ad-slot"></div>
 <script src="https://web-sdk.momento.dev/prod/momento-latest.min.js"></script>
 <script>
   window.momentoAdSdk.showAd({
     format: 'banner',
-    appId: '12345',
     unitId: '678910',
     settings: {
       slot: 'momento-ad-slot',
@@ -71,8 +69,8 @@
 - 콜백함수 사용 불가합니다.
 
 ```html
-<iframe id="momento-ad-slot"></iframe>
-<script src="https://web-sdk.momento.dev/prod/momento-latest.min.js?format=banner&appId=12345&unitId=678910&slotId=momento-ad-slot"></script>
+<div id="momento-ad-slot"></div>
+<script src="https://web-sdk.momento.dev/prod/momento-latest.min.js?format=banner&unitId=678910&slotId=momento-ad-slot"></script>
 ```
 
 # Banner/Native/Video 별 상세 설정 가이드
@@ -95,7 +93,7 @@
 
 2. slot 정의하기
 
-- `appId`, `unitId` : 매체를 등록할 때 받은 값을 입력합니다.
+- `unitId` : 매체를 등록할 때 받은 unidId값을 입력합니다.
 - `settings.slot` : 광고를 보여줄 태그의 id 값을 지정할 수 있습니다.
 - `settings.backfills` : 광고 호출 에러 시 비어있는 광고 slot에 보여질 html 마크업 요소를 추가할 수 있습니다. 배열에 담긴 요소는 랜덤으로 노출됩니다.
 - `settings.onLoaded` : 배너 load 성공 시 실행되는 콜백 함수를 추가할 수 있습니다.
@@ -115,7 +113,6 @@
 <script>
   window.momentoAdSdk.showAd({
     format: 'banner',
-    appId: '0123456789',
     unitId: '9876543210',
     settings: {
       slot: 'momento-ad-banner',
@@ -153,7 +150,7 @@
 
 2. slot 정의하기
 
-- `appId`, `unitId` : 매체를 등록할 때 받은 값을 입력합니다.
+- `unitId` : 매체를 등록할 때 받은 unidId값을 입력합니다.
 - `settings.slot` : 광고를 보여줄 노드의 id 값을 지정할 수 있습니다.
 - `settings.nativeCallback` : 콜백 함수 인자로 네이티브 광고 레이아웃을 구성할 수 있습니다.
 - `settings.onLoaded`: 네이티브 load 성공 시 실행되는 콜백 함수를 추가할 수 있습니다.
@@ -173,23 +170,22 @@
 - `nativeCallback` 콜백 함수 인자로 직접 네이티브 광고 레이아웃을 구성할 수 있습니다.
 - (필수) [AdChoices](https://en.wikipedia.org/wiki/AdChoices) 아이콘이 노출되도록 구성 해야합니다. 다른요소에 가려지지 않도록 광고 우측 상단 배치를 권장합니다.
 
-| **asset**     | **type** | **description**                       | **example**                |
-| ------------- | :----------: | ------------------------------ | -------------------------- |
-| imageUrl      |    string    | 광고 메인이미지 url            | imageUrl...      |
-| title         |    string    | 광고 제목                      | 광고 제목입니다.         |
-| clickUrl      |    string    | 광고 click시 이동 url          | clickUrl...       |
-| description   |    string    | 광고 상세 설명                 | 광고 설명입니다.         |
-| cta           |    string    | 광고 액션 유도 문구            | 바로가기                 |
-| logoUrl       |    string    | 광고주 로고                    | logoUrl...         |
-| adChoiceImageUrl |    string    | 광고 Privacy policy 아이콘 url | adChoiceImage... |
-| adChoiceClickUrl |    string    | 광고 Privacy policy 클릭 url   |adChoiceClick... |
+| **asset**        | **type** | **description**                | **example**      |
+| ---------------- | :------: | ------------------------------ | ---------------- |
+| imageUrl         |  string  | 광고 메인이미지 url            | imageUrl...      |
+| title            |  string  | 광고 제목                      | 광고 제목입니다. |
+| clickUrl         |  string  | 광고 click시 이동 url          | clickUrl...      |
+| description      |  string  | 광고 상세 설명                 | 광고 설명입니다. |
+| cta              |  string  | 광고 액션 유도 문구            | 바로가기         |
+| logoUrl          |  string  | 광고주 로고                    | logoUrl...       |
+| adChoiceImageUrl |  string  | 광고 Privacy policy 아이콘 url | adChoiceImage... |
+| adChoiceClickUrl |  string  | 광고 Privacy policy 클릭 url   | adChoiceClick... |
 
 ```html
 <script src="https://web-sdk.momento.dev/prod/momento-latest.min.js"></script>
 <script>
   window.momentoAdSdk.showAd({
      format: 'native',
-     appId: '0123456789',
      unitId: '9876543210',
      settings: {
        slot: 'momento-ad-native',
@@ -243,5 +239,61 @@
 ```html
 <body>
   <div id="momento-ad-native"></div>
+</body>
+```
+
+
+
+## 비디오 포맷 가이드
+
+1. Momento SDK 초기화
+
+- 서비스 페이지에 Momento SDK를 로드합니다.
+- SDK는 페이지에 최초 1회만 로드되어야 합니다.
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://web-sdk.momento.dev/prod/momento-latest.min.js"></script>
+  </head>
+</html>
+```
+
+2. slot 정의하기
+
+- `unitId` : 매체를 등록할 때 받은 unidId값을 입력합니다.
+- `settings.slot` : 광고를 보여줄 태그의 id 값을 지정할 수 있습니다.
+- `settings.onLoaded` : 비디오 load 성공 시 실행되는 콜백 함수를 추가할 수 있습니다.
+- `settings.onFailed` : 비디오 load 실패 시 실행되는 콜백 함수를 추가할 수 있습니다.
+
+### Video Settings Option 설정
+
+|          | **required** |     **type**     | **description**                        | **example**                           |
+| -------- | :----------: | :--------------: | -------------------------------------- | ------------------------------------- |
+| slot     |     true     |      string      | 광고를 보여줄 노드의 id 값             | momento-ad-video                      |
+| onLoaded |    false     | function(unitId) | 비디오 load 성공 시 실행되는 콜백 함수 | function(unitId){console.log(unitId)} |
+| onFailed |    false     | function(error)  | 비디오 load 실패 시 실행되는 콜백 함수 | function(error){console.log(error)}   |
+
+```html
+<script src="https://web-sdk.momento.dev/prod/momento-latest.min.js"></script>
+<script>
+  window.momentoAdSdk.showAd({
+    format: 'video',
+    unitId: '9876543210',
+    settings: {
+      slot: 'momento-ad-video',
+      onLoaded: (unitId) => console.log(unitId),
+      onFailed: (error) => console.log(error),
+    },
+  });
+</script>
+```
+
+3. 비디오 광고 보여주기
+
+```html
+<body>
+  <div id="momento-ad-video">여기에 광고가 노출됩니다.</div>
 </body>
 ```

@@ -6,11 +6,10 @@
     <script src="https://web-sdk.momento.dev/prod/momento-latest.min.js"></script>
     <script>
         window.momentoAdSdk.showAd({
-            format: 'banner',
+            format: 'video',
             unitId: 'unitId',
             settings: {
-                slot: 'momento-ad-banner',
-                backfills: ['<div>backfill</div>'],
+                slot: 'momento-ad-video',
                 onLoaded: (unitId) => console.log('onLoaded', unitId),
                 onFailed: (error) => console.log('onFailed', error)
             }
@@ -18,6 +17,6 @@
     </script>
 </head>
 <body>
-    <div id="momento-ad-banner"></div>
+    <div id="momento-ad-video"></div>
 </body>
 </html>
